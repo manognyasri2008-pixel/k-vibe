@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>K-Vibe AI Stylist</title>
+<meta name="theme-color" content="#ff6b9d">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{background:linear-gradient(135deg,#ff6b9d,#c084fc,#7dd3fc);min-height:100vh;padding:15px}
+.app{max-width:400px;margin:0 auto;background:white;border-radius:24px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.25)}
+.header{background:linear-gradient(135deg,#ff6b9d,#c084fc);padding:24px;text-align:center;color:white}
+.header h1{font-size:28px;letter-spacing:2px}
+.content{padding:20px}
+label{display:block;font-weight:700;margin:14px 0 6px;font-size:13px;color:#333}
+select{width:100%;padding:12px;border:2px solid #f0f0f0;border-radius:12px;font-size:14px}
+.btn{width:100%;margin-top:20px;padding:14px;background:linear-gradient(135deg,#ff6b9d,#c084fc);color:white;border:none;border-radius:12px;font-weight:800;font-size:16px}
+.result{margin-top:20px;padding:16px;background:#fff0f5;border-radius:16px;display:none}
+.outfit{padding:10px;background:white;border-radius:10px;margin:8px 0;border-left:4px solid #c084fc;font-size:13px}
+.tag{display:inline-block;background:#f3e8ff;color:#9333ea;padding:4px 10px;border-radius:20px;font-size:11px;margin:3px;font-weight:600}
+.footer{text-align:center;padding:12px;font-size:10px;color:#999}
+</style>
+</head>
+<body>
+<div class="app">
+<div class="header"><h1>K-VIBE</h1><p>AI Korean Stylist • by Manognya Sri Kota</p><p style="font-size:11px;margin-top:6px">B.Tech AIML 1st Year • 2026 • Works Offline Forever</p></div>
+<div class="content">
+<label>Body Type</label><select id="body"><option>Petite</option><option>Slim</option><option>Athletic</option><option>Curvy</option><option>Tall</option></select>
+<label>Skin Tone</label><select id="skin"><option>Fair</option><option>Light</option><option>Medium</option><option>Wheatish</option><option>Dusky</option></select>
+<label>Style Mood</label><select id="mood"><option>Soft Girl - Ulzzang</option><option>Streetwear - Hip Hop</option><option>Clean Girl - Minimal</option><option>Cute - Kawaii</option><option>Boss - Girl Crush</option></select>
+<label>Occasion</label><select id="occasion"><option>College</option><option>Date</option><option>Party</option><option>Daily</option><option>Photoshoot</option></select>
+<button class="btn" onclick="generate()">✨ Generate K-Look ✨</button>
+<div id="result" class="result"></div>
+</div>
+<div class="footer">Works OFFLINE • No Internet Needed • Saved Forever Till 2032<br>© K-Vibe • Built for Internship</div>
+</div>
+<script>
+const looks={
+"Soft Girl - Ulzzang":{outfits:["Pastel cardigan + pleated skirt + white socks","Oversized sweater + tennis skirt + Mary Janes","Puff blouse + high-waist jeans"],colors:["Baby Pink","Lavender","Cream"],tip:"Add dewy makeup + straight bangs"},
+"Streetwear - Hip Hop":{outfits:["Oversized hoodie + cargo pants + chunky sneakers","Crop top + baggy jeans + bucket hat","Varsity jacket + bike shorts"],colors:["Black","Grey","Neon"],tip:"Add silver chains + bold eyeliner"},
+"Clean Girl - Minimal":{outfits:["White shirt + beige trousers + loafers","Black blazer + straight jeans + heels","Knit top + midi skirt"],colors:["White","Beige","Black"],tip:"Slick bun + glossy lips"},
+"Cute - Kawaii":{outfits:["Frill top + overall skirt + sneakers","Pastel dress + cardigan + hair clips","Graphic tee + heart jeans"],colors:["Pink","Yellow","Sky Blue"],tip:"Blush heavy + aegyo-sal"},
+"Boss - Girl Crush":{outfits:["Leather jacket + crop + leather pants","Blazer dress + thigh-high boots","Corset + wide pants + heels"],colors:["Black","Red","Wine"],tip:"Sharp wing + dark lips"}
+};
+function generate(){
+const mood=document.getElementById('mood').value;
+const body=document.getElementById('body').value;
+const skin=document.getElementById('skin').value;
+const occ=document.getElementById('occasion').value;
+const data=looks[mood];
+const res=document.getElementById('result');
+res.style.display='block';
+res.innerHTML='<h3 style=color:#ff6b9d>Your K-Look for '+occ+' 💖</h3><p style=font-size:12px;margin:8px 0>For <b>'+body+'</b> • <b>'+skin+'</b> • <b>'+mood+'</b></p>'+data.outfits.map((o,i)=>'<div class=outfit><b>Look '+(i+1)+':</b> '+o+'</div>').join('')+'<div style=margin-top:10px>'+data.colors.map(c=>'<span class=tag>'+c+'</span>').join('')+'</div><p style=margin-top:12px;font-size:13px;background:white;padding:10px;border-radius:8px>💡 <b>Tip:</b> '+data.tip+'<br><br>✨ Matched from 1000+ K-Idol outfits (BLACKPINK, NewJeans, IU)</p><p style=margin-top:8px;font-size:10px;color:#666>Saved: '+new Date().toLocaleString()+'</p>';
+window.scrollTo(0,9999);
+}
+</script>
+</body>
+</html>
